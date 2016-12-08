@@ -1,0 +1,145 @@
+HILFE VERSION 002
+-----------------
+Der GUV Assistent wird ausschließlich per Kommandozeile und Übergabeparametern bedient.
+Eine universelle Schnittstelle zu einer grafische Oberfläche ist somit gegeben.
+
+Die Währungseinheit ist nicht festgelegt. Es darf mit EUR, USD, GBP, Rubel,
+... gerechnet werden.
+
+In allen Eingaben sind Semikolons (;) nicht erlaubt.
+Im Betreff und Bemerkung einer Buchung dürfen Leezeichen verwendet werden.
+Der Text muß dann aber in Hochkommas eingeschlossen werden, wie in den Beispielen gezeigt.
+
+
+
+Anlegen eines neuen Mandaten oder einer neuen Firma
+---------------------------------------------------------
+
+Voraussetzung für Buchungen jeder Art ist, daß ein
+Mandant, also eine Firma oder der Name einer natürlichen Person
+angelegt wurde. Ein neuer Mandant wird angelegt, wie in den
+folgenden Beispielen gezeigt:
+
+
+Beispiel 1:
+
+Befehl: guv -neu man firma_müller -stnr 123/456/78901 -ui DE123456789
+
+
+Sofern nicht anders spezifiziert, werden per Default die Dateien
+'einnahmen.csv' und 'ausgaben.csv' erstellt. In diese werden später
+Einnahmen und Ausgaben eingetragen.
+Durch Option -ad oder -ed gefolgt vom Namen einer anderen Datei kann dies
+geändert werden:
+
+Beispiel 2:
+
+Befehl: guv -rep report.csv -stnr 123/456/78901 -ed fima_x_einnahmen.csv -ad firma_x_ausgaben.csv
+
+
+
+
+Buchung von Einnahmen
+---------------------
+
+Beispiel 1:
+
+- Netto-Betrag 1000 EUR, Zahlungseing 2014-01-15, Kunde 'Muster'
+- Betreff 'CAD-Dienstleistungen', Bemerkung 'nach_Mahnung'
+
+Befehl: guv -ein -betrag 1000 -kunde Muster -betreff CAD-Dienstleistungen -datum 2014-01-15 -bem "nach 2. Mahnung"
+
+
+Die Mehrwertsteuer wird per Default mit 19.00% angenommen, sofern nicht anders spezifiziert.
+Soll der Steuersatz von  7.00% gelten, ist die Option -steuerausgaben 2 zu verwenden.
+Wird nicht versteuert (z.B. weil Kleinunternehmer), ist die Option -steuerausgaben 0 zu verwenden.
+
+Beispiel 2:
+
+Befehl: guv -ein -betrag 100 -kunde Muster -betreff Getränke -datum 2014-01-16 -steuerschluessel 2
+
+
+Beispiel 3:
+
+- Netto-Betrag 2000.77 EUR, Zahlungseing 2014-01-16, Kunde 'Muster'
+- Betreff 'Training CAD Software', rentenversicherungspflichtige Tätigkeit
+- nach SGB
+
+Befehl: guv -ein -betrag 2000.77 -kunde Muster -betreff "Training CAD Software" -datum 2014-01-15 -rv_pfl j
+
+
+Alle Einnahmen werden per Default in die Datei 'einnahmen.csv eingetragen. Durch Option -ed gefolgt vom Namen
+einer beliebigen anderen Datei kann dies geändert werden:
+
+Beispiel 4:
+
+Befehl: guv -ein -betrag 100 -kunde Muster -betreff miete -datum 2014-01-16 -ed firma_x_einnahmen.csv
+
+
+Buchung von Ausgaben
+---------------------
+
+Beispiel 1:
+
+- Netto-Betrag 200 EUR, Datum 2014-01-15, Empfänger 'Baumarkt'
+- Betreff 'Werkzeuge', Bemerkung 'bar bezahlt'
+
+Befehl: guv -aus -betrag 200 -empfaenger Baumarkt -betreff Werkzeuge -datum 2012-01-23
+
+
+Beispiel 2:
+
+- Netto-Betrag 200 EUR, Datum 2014-01-15, Empfänger 'Büromarkt'
+- Betreff 'Bürobedarf', vollständige Ausgabe für RV pflichtige Tätigkeit nach SGB
+
+Befehl: guv -aus -betrag 200 -empfaenger Büromarkt -betreff Bürobedarf -datum 2012-01-23 -rv_voll j
+
+
+Beispiel 3:
+
+- Netto-Betrag 200 EUR, Datum 2014-01-15, Empfänger 'Büromarkt'
+- Betreff 'Bürobedarf', anteilige Ausgabe für RV pflichtige Tätigkeit nach SGB
+
+Befehl: guv -aus -betrag 200 -empfaenger Büromarkt -betreff Bürobedarf -datum 2012-01-23 -rv_teil j
+
+
+Alle Ausgaben werden per Default in die Datei 'ausgaben.csv eingetragen.
+Durch Option -ad gefolgt vom Namen einer beliebigen anderen Datei kann dies
+geändert werden:
+
+Beispiel 4:
+
+Befehl: guv -aus -betrag 200 -empfaenger Büromarkt -betreff Bürobedarf -datum 2012-01-23 -ad firma_x_ausgaben.csv
+
+
+
+Erstellung des Abschlußberichtes zum beliebigen Zeitpunkt
+---------------------------------------------------------
+
+Der Bericht wird als csv-Datei erstellt. Diese kann mit jedem
+Tabellenkalkulationsprogramm (OpenOffice, LibreOffice, MS-Office, ...)
+geöffnet werden. Trennzeichen ist das Semikolon (;).
+Alle Einträge sind in Hochkommas eingeschlossen.
+
+
+Beispiel 1:
+
+Befehl: guv -rep report.csv
+
+
+Optional darf das zu berechnende Quartal angegeben werden:
+
+Beispiel 2:
+
+Befehl: guv -rep report.csv -quartal 3
+
+
+Der Bericht wird per Default aus den Dateien einnahmen.csv und ausgaben.csv erstellt.
+Durch Option -ad oder -ed gefolgt vom Namen einer anderen Datei kann dies geändert werden:
+
+Beispiel 3:
+
+Befehl: guv -rep report.csv -ed fima_x_einnahmen.csv -ad firma_x_ausgaben.csv
+
+--------------
+HILFE ENDE
