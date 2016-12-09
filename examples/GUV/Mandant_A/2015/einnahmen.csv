@@ -1,0 +1,11 @@
+"EINNAHMEN"
+"FIRMA :";"firma_müller"
+"STEUERNUMMER :";"123/456/78901"
+"USt.-IdNr :";"DE123456789";
+"WIRTSCHAFTSJAHR :";"2015";
+"BUCHUNG_NR.";"DATUM";"BETRAG";"ST_SCHL.";"MWST";"KUNDE";"BETREFF";"RV_PFLICHTIG";"BEMERKUNG"
+"1";"2015-02-24";"12000.00";"1";"2280.00";"Maier_Informatics";"Linux Beratung und Support";"n";"keine"
+"2";"2015-01-20";"100.15";"1";"19.03";"Musterfirma";"Material Projekt 675";"n";"keine"
+"3";"2015-05-26";"2000.00";"1";"380.00";"Mueller_GmbH";"CAE Dienstleistungen";"n";"keine"
+"4";"2015-04-26";"5500.00";"1";"1045.00";"Muster_GmbH";"CAD-Training";"n";"nach 3. Mahnung"
+"5";"2015-04-26";"500.00";"1";"95.00";"FH-unbekannt";"Vorlesung E-Technik";"j";"keine"

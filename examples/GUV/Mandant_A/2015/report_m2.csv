@@ -1,0 +1,51 @@
+"GEWINN-UND-VERLUST-RECHNUNG";
+"----------------------------------------------------------";
+"FIRMA :";"firma_müller"
+"STEUERNUMMER :";"123/456/78901"
+"USt.-IdNr :";"DE123456789";
+"WIRTSCHAFTSJAHR :";"2015";
+"MONAT :";"2";
+"DATUM (JJJJ-MM-TT) :";"2015-03-24 15:46:08"
+
+"MwSt. Schlüssel 1 :";"19.00 %";
+"MwSt. Schlüssel 2 :";"7.00 %";
+
+
+"1. EINNAHMEN"
+"-------------"
+"aus Datei :";"einnahmen.csv"
+
+"BUCHUNG_NR.";"DATUM";"UMSATZ";"ST_SCHL.";"MWST_1";"MWST_2";"KUNDE";"BETREFF";"BEMERKUNG";
+
+"2";"2015-02-24";"12.000,00";"1";"2.280,00";"0,00";"Maier_Informatics";"Linux Beratung und Support";"keine";
+"--------------";"--------------";"--------------";"-------";"--------------";"--------------";"-------------------------";"-------------------------";"--------------";
+"SUMME";;"12.000,00";;"2.280,00";"0,00";;;
+
+
+
+"2. AUSGABEN "
+"-------------"
+"aus Datei :";"ausgaben.csv"
+
+"BUCHUNG_NR.";"DATUM";"BETRAG";"ST_SCHL.";;"MWST";"EMPFÄNGER";"BETREFF";"BEMERKUNG";
+
+"--------------";"--------------";"--------------";"-------";"-------";"--------------";"-----------------------";"-----------------------";"--------------";
+"SUMME";;"0,00";;;"0,00";;;;
+
+
+
+"3. ABSCHLUSS"
+"-------------"
+
+
+"UMSATZ GESAMT :";"12.000,00";
+
+"GEWINN GESAMT :";"12.000,00";
+
+"STEUEREINNAHMEN :";"2.280,00";"(eingen. MwSt.)";
+
+"VORSTEUER :";"0,00";"(ausgegebene MwSt.)";
+
+"MwSt. ÜBERSCHUSS :";"2.280,00";"-> abzuführen an FA";"(eingen.";"MwSt.";"- ausgeg. MwSt.)";
+
+

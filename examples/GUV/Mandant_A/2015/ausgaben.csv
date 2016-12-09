@@ -1,0 +1,10 @@
+"AUSGABEN"
+"FIRMA :";"firma_müller"
+"STEUERNUMMER :";"123/456/78901"
+"USt.-IdNr :";"DE123456789";
+"WIRTSCHAFTSJAHR :";"2015";
+"BUCHUNG_NR.";"DATUM";"BETRAG";"ST_SCHL";"MWST";"EMPFÄNGER";"BETREFF";"RV_ANTEILIG";"RV_VOLLST.";"BEMERKUNG"
+"1";"2015-01-26";"100.00";"1";"19.00";"Telefonanbieter";"Telefon & Internet";"n";"n";"keine"
+"2";"2015-06-20";"230.50";"2";"16.14";"Hilton Hotel München";"Bewirtung Kunde X";"n";"n";"keine"
+"3";"2015-04-20";"23.50";"1";"4.47";"Deutsche Bahn AG";"Fahrkarte zur FH-unbekannt";"n";"j";"keine"
+"4";"2015-04-18";"400.00";"1";"76.00";"Bild und Ton";"Beamer";"j";"n";"für Vorlesungen"

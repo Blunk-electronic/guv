@@ -1,0 +1,53 @@
+"GEWINN-UND-VERLUST-RECHNUNG";
+"----------------------------------------------------------";
+"FIRMA :";"firma_müller"
+"STEUERNUMMER :";"123/456/78901"
+"USt.-IdNr :";"DE123456789";
+"WIRTSCHAFTSJAHR :";"2015";
+"QUARTAL :";"1";
+"DATUM (JJJJ-MM-TT) :";"2015-03-24 15:45:19"
+
+"MwSt. Schlüssel 1 :";"19.00 %";
+"MwSt. Schlüssel 2 :";"7.00 %";
+
+
+"1. EINNAHMEN"
+"-------------"
+"aus Datei :";"einnahmen.csv"
+
+"BUCHUNG_NR.";"DATUM";"UMSATZ";"ST_SCHL.";"MWST_1";"MWST_2";"KUNDE";"BETREFF";"BEMERKUNG";
+
+"1";"2015-01-20";"100,15";"1";"19,03";"0,00";"Musterfirma";"Material Projekt 675";"keine";
+"2";"2015-02-24";"12.000,00";"1";"2.280,00";"0,00";"Maier_Informatics";"Linux Beratung und Support";"keine";
+"--------------";"--------------";"--------------";"-------";"--------------";"--------------";"-------------------------";"-------------------------";"--------------";
+"SUMME";;"12.100,15";;"2.299,03";"0,00";;;
+
+
+
+"2. AUSGABEN "
+"-------------"
+"aus Datei :";"ausgaben.csv"
+
+"BUCHUNG_NR.";"DATUM";"BETRAG";"ST_SCHL.";;"MWST";"EMPFÄNGER";"BETREFF";"BEMERKUNG";
+
+"1";"2015-01-26";"100,00";"1";;"19,00";"Telefonanbieter";"Telefon & Internet";"keine";
+"--------------";"--------------";"--------------";"-------";"-------";"--------------";"-----------------------";"-----------------------";"--------------";
+"SUMME";;"100,00";;;"19,00";;;;
+
+
+
+"3. ABSCHLUSS"
+"-------------"
+
+
+"UMSATZ GESAMT :";"12.100,15";
+
+"GEWINN GESAMT :";"12.000,15";
+
+"STEUEREINNAHMEN :";"2.299,03";"(eingen. MwSt.)";
+
+"VORSTEUER :";"19,00";"(ausgegebene MwSt.)";
+
+"MwSt. ÜBERSCHUSS :";"2.280,03";"-> abzuführen an FA";"(eingen.";"MwSt.";"- ausgeg. MwSt.)";
+
+

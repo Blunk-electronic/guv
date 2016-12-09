@@ -1,0 +1,59 @@
+"GEWINN-UND-VERLUST-RECHNUNG";
+"----------------------------------------------------------";
+"FIRMA :";"firma_müller"
+"STEUERNUMMER :";"123/456/78901"
+"USt.-IdNr :";"DE123456789";
+"WIRTSCHAFTSJAHR :";"2015";
+"QUARTAL :";"1..4";
+"DATUM (JJJJ-MM-TT) :";"2015-03-24 15:27:10"
+
+"MwSt. Schlüssel 1 :";"19.00 %";
+"MwSt. Schlüssel 2 :";"7.00 %";
+
+
+"1. EINNAHMEN"
+"-------------"
+"aus Datei :";"einnahmen.csv"
+
+"BUCHUNG_NR.";"DATUM";"UMSATZ";"ST_SCHL.";"MWST_1";"MWST_2";"KUNDE";"BETREFF";"BEMERKUNG";
+
+"1";"2015-01-20";"100,15";"1";"19,03";"0,00";"Musterfirma";"Material Projekt 675";"keine";
+"2";"2015-02-24";"12.000,00";"1";"2.280,00";"0,00";"Maier_Informatics";"Linux Beratung und Support";"keine";
+"3";"2015-04-26";"500,00";"1";"95,00";"0,00";"FH-unbekannt";"Vorlesung E-Technik";"keine";
+"4";"2015-04-26";"5.500,00";"1";"1.045,00";"0,00";"Muster_GmbH";"CAD-Training";"nach 3. Mahnung";
+"5";"2015-05-26";"2.000,00";"1";"380,00";"0,00";"Mueller_GmbH";"CAE Dienstleistungen";"keine";
+"--------------";"--------------";"--------------";"-------";"--------------";"--------------";"-------------------------";"-------------------------";"--------------";
+"SUMME";;"20.100,15";;"3.819,03";"0,00";;;
+
+
+
+"2. AUSGABEN "
+"-------------"
+"aus Datei :";"ausgaben.csv"
+
+"BUCHUNG_NR.";"DATUM";"BETRAG";"ST_SCHL.";;"MWST";"EMPFÄNGER";"BETREFF";"BEMERKUNG";
+
+"1";"2015-01-26";"100,00";"1";;"19,00";"Telefonanbieter";"Telefon & Internet";"keine";
+"2";"2015-04-18";"400,00";"1";;"76,00";"Bild und Ton";"Beamer";"für Vorlesungen";
+"3";"2015-04-20";"23,50";"1";;"4,47";"Deutsche Bahn AG";"Fahrkarte zur FH-unbekannt";"keine";
+"4";"2015-06-20";"230,50";"2";;"16,14";"Hilton Hotel München";"Bewirtung Kunde X";"keine";
+"--------------";"--------------";"--------------";"-------";"-------";"--------------";"-----------------------";"-----------------------";"--------------";
+"SUMME";;"754,00";;;"115,61";;;;
+
+
+
+"3. ABSCHLUSS"
+"-------------"
+
+
+"UMSATZ GESAMT :";"20.100,15";
+
+"GEWINN GESAMT :";"19.346,15";
+
+"STEUEREINNAHMEN :";"3.819,03";"(eingen. MwSt.)";
+
+"VORSTEUER :";"115,61";"(ausgegebene MwSt.)";
+
+"MwSt. ÜBERSCHUSS :";"3.703,42";"-> abzuführen an FA";"(eingen.";"MwSt.";"- ausgeg. MwSt.)";
+
+
