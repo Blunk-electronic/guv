@@ -56,7 +56,7 @@ with ada.calendar.time_zones;	use ada.calendar.time_zones;
 with ada.containers.generic_array_sort;
 with ada.containers.generic_constrained_array_sort;
 
-with ada.environment_variables; --use ada.environment_variables; -- ins v007
+with ada.environment_variables; --use ada.environment_variables;
 
 with guv_string_processing;		use guv_string_processing;
 with guv_csv;					use guv_csv;
@@ -109,7 +109,7 @@ procedure guv is
 
 	yes_no_type 				: constant character_set := to_set("jn");
 	number_type 				: constant character_set := to_set("0123456789");
-	report_rv_figures			: boolean := false; -- by default rv is suppressed in report. -- ins v006
+	report_rv_figures			: boolean := false; -- by default rv is suppressed in report.
 	rv_pflichtig_yes_no_given	: character := 'n';
 	rv_anteilig_yes_no_given	: character := 'n';
 	rv_vollst_yes_no_given		: character := 'n';
@@ -120,31 +120,31 @@ procedure guv is
 	date_given			: string (1..10) := "JJJJ-MM-TT";
 	date_given_ok 		: boolean := false;
 
-	fiscal_year_given	: string (1..4) := "JJJJ"; -- ins v003
+	fiscal_year_given	: string (1..4) := "JJJJ";
 
-	subtype quarter_type is natural range 0..4; -- ins v005
-	quarter_given		: quarter_type := 0; -- ins v005
+	subtype quarter_type is natural range 0..4;
+	quarter_given		: quarter_type := 0;
 
-	subtype month_type is natural range 0..12; -- ins v008
-	month_given			: month_type := 0; -- ins v008
+	subtype month_type is natural range 0..12;
+	month_given			: month_type := 0;
 
-	home_length			: natural := 6+32+1; -- /home/ + 32 + /, according to man page useradd command -- ins v007
+	home_length			: natural := 6+32+1; -- /home/ + 32 + /, according to man page useradd command
 	name_length			: natural := 20;
 	customer_length		: natural := 30;
 	subject_length		: natural := 40;
 	remark_length		: natural := 50;
-	package home_type 			is new generic_bounded_length(home_length); use home_type; -- ins v007
+	package home_type 			is new generic_bounded_length(home_length); use home_type;
 	package name_type 			is new generic_bounded_length(name_length); use name_type;
 	package customer_type 		is new generic_bounded_length(customer_length); use customer_type;
 	package subject_type 		is new generic_bounded_length(subject_length); use subject_type;
 	package remarks_type 		is new generic_bounded_length(remark_length); use remarks_type;
 
-	home_directory			: home_type.bounded_string; -- ins v007
-	conf_directory			: constant string (1..5) := ".guv/"; -- ins v007
-	conf_file_name			: constant string (1..8) := "guv.conf"; -- ins v007
-	help_file_name_german	: constant string (1..15) := "help_german.txt"; -- ins v007
+	home_directory			: home_type.bounded_string;
+	conf_directory			: constant string (1..5) := ".guv/";
+	conf_file_name			: constant string (1..8) := "guv.conf";
+	help_file_name_german	: constant string (1..15) := "help_german.txt";
 
-	name_given			: name_type.bounded_string; -- := to_bounded_string("-");
+	name_given			: name_type.bounded_string;
 	name_given_ok		: boolean := false;
 	receipient_given	: customer_type.bounded_string;
 	receipient_given_ok	: boolean := false;
@@ -223,7 +223,6 @@ procedure guv is
 			return test_string;
 		end check_semicolon;
 
---CS: remove this function, it is already in the m1 lib -- ins v005
 	function check_date	-- returns given string unchanged if ok, raises constraint_error on occurence of space or semicolon
 		( date_test	: string) 
 		return string is
@@ -443,8 +442,7 @@ procedure guv is
 						ct := ct + 1; -- count bookings
 					end if;
 
-					--if strip_text_delimiters(guv_csv.get_field(line,1)) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- rm v002
-					if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- ins v002
+					if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field
 						bookings_section_entered := true;
 					end if;
 			end loop;
@@ -560,7 +558,7 @@ procedure guv is
 			put_line(takings_file, ascii.quotation & "STEUERNUMMER :" & ascii.quotation & ifs & ascii.quotation & tax_id_given & ascii.quotation);
 			put_field(takings_file,"USt.-IdNr :"); put_field(takings_file,vat_id_given); 
 			put_lf(takings_file);
-			put_field(takings_file,"WIRTSCHAFTSJAHR :"); put_field(takings_file,fiscal_year_given); put_lf(takings_file); -- ins v003
+			put_field(takings_file,"WIRTSCHAFTSJAHR :"); put_field(takings_file,fiscal_year_given); put_lf(takings_file);
 			put_line(takings_file,
 					  ascii.quotation & "BUCHUNG_NR." & ascii.quotation &
 				ifs & ascii.quotation & "DATUM" & ascii.quotation &
@@ -587,9 +585,8 @@ procedure guv is
 			put_line(expenses_file, ascii.quotation & "FIRMA :" & ascii.quotation & ifs & ascii.quotation & to_string(name_given) & ascii.quotation);
 			put_line(expenses_file, ascii.quotation & "STEUERNUMMER :" & ascii.quotation & ifs & ascii.quotation & tax_id_given & ascii.quotation);
 			put_field(expenses_file,"USt.-IdNr :"); put_field(expenses_file,vat_id_given);
-			put_lf(expenses_file); -- ins v003
-			put_field(expenses_file,"WIRTSCHAFTSJAHR :"); put_field(expenses_file,fiscal_year_given); put_lf(expenses_file); -- ins v003
-			--new_line(expenses_file); -- rm v003
+			put_lf(expenses_file);
+			put_field(expenses_file,"WIRTSCHAFTSJAHR :"); put_field(expenses_file,fiscal_year_given); put_lf(expenses_file);
 
 			put_line(expenses_file,
 					ascii.quotation & "BUCHUNG_NR." & ascii.quotation &
@@ -691,7 +688,7 @@ procedure guv is
 				when 0 =>
 					vat_calculated := 0.00;
 					put_line("zzgl. MwSt.         : " & trim(money_positive'image(vat_calculated),left) &
-					(" (steuerfrei)")); -- ins v003
+					(" (steuerfrei)"));
 
 				when others => raise constraint_error;
 			end case;
@@ -843,7 +840,6 @@ procedure guv is
 
 		--ratio_rv_turnover	: money_positive := 0.00;
 		type ratio is delta 0.0001 digits 5;
-		--ratio_rv_turnover	: ratio := 0.0000; -- rm v008
 		ratio_rv_turnover	: ratio := 0.0000; -- defaults to 0, mod v008
 
 		expenses_total		: money_positive := 0.00;
@@ -855,7 +851,7 @@ procedure guv is
 		vat_excess			: money := 0.00;
 
 		--date_given			: string (1..10) := "JJJJ-MM-TT";
-		date_of_booking		: string (1..10) := "JJJJ-MM-TT"; -- ins v005
+		date_of_booking		: string (1..10) := "JJJJ-MM-TT";
 		natural_date		: natural := 0;
 		earliest_date		: natural;
 		latest_date			: natural;
@@ -922,8 +918,8 @@ procedure guv is
 			loop
 				line:=get_line;
 					if bookings_section_entered then
-					--if bookings_section_entered and guv_csv.get_field_count(line) > 0 then -- ins v003
-						prog_position := "RT09"; -- ins v009
+					--if bookings_section_entered and guv_csv.get_field_count(line) > 0 then
+						prog_position := "RT09";
 						booking_pt := booking_pt + 1;
 						--put_line(natural'image(booking_pt));
 						--put_line(line);
@@ -938,32 +934,25 @@ procedure guv is
  						takings_sized(booking_pt).remarks			:= to_bounded_string(guv_csv.get_field(line,9));
 
 					else -- bookings_section not entered yet 
-						--if strip_text_delimiters(guv_csv.get_field(line,1)) = "FIRMA :" then -- rm v002
-						if guv_csv.get_field(line,1) = "FIRMA :" then -- ins v002
+						if guv_csv.get_field(line,1) = "FIRMA :" then
 							prog_position := "RTA2";
-							--name_given := to_bounded_string(strip_text_delimiters(guv_csv.get_field(line,2))); -- rm v002
-							name_given := to_bounded_string(guv_csv.get_field(line,2)); -- ins v002
+							name_given := to_bounded_string(guv_csv.get_field(line,2));
 							--put_line("test");
 						end if;
 
-						-- if strip_text_delimiters(guv_csv.get_field(line,1)) = "STEUERNUMMER :" then -- rm v002
-						if guv_csv.get_field(line,1) = "STEUERNUMMER :" then -- ins v002
+						if guv_csv.get_field(line,1) = "STEUERNUMMER :" then
 							prog_position := "RTA3";
-							--tax_id_given := strip_text_delimiters(guv_csv.get_field(line,2)); -- rm v002
-							tax_id_given := guv_csv.get_field(line,2); -- ins v002
+							tax_id_given := guv_csv.get_field(line,2);
 							--put_line("test");
 						end if;
 
-						--if strip_text_delimiters(guv_csv.get_field(line,1)) = "USt.-IdNr :" then -- rm v002
-						if guv_csv.get_field(line,1) = "USt.-IdNr :" then -- ins v002
+						if guv_csv.get_field(line,1) = "USt.-IdNr :" then
 							prog_position := "RTA9";
-							--vat_id_given := strip_text_delimiters(guv_csv.get_field(line,2)); -- rm v002
-							vat_id_given := guv_csv.get_field(line,2); -- ins v002
+							vat_id_given := guv_csv.get_field(line,2);
 							--put_line("test");
 						end if;
 
-						--if strip_text_delimiters(guv_csv.get_field(line,1)) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- rm v002
-						if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- ins v002
+						if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field
 							prog_position := "RTA4";
 							bookings_section_entered := true;
 						end if;
@@ -1018,7 +1007,6 @@ procedure guv is
 			if bookings_ct > 0 then -- only if there are bookings at all
 				for booking_pt in 1..bookings_ct
 				loop
-					-- takings_vat := takings_vat + takings_sized(booking_pt).vat; -- steuereinahmen summieren -- rm v003
 
 					prog_position := "RGC1";
 					natural_date := date_to_natural(takings_sized(booking_pt).date);
@@ -1051,7 +1039,7 @@ procedure guv is
 			put_line(report_file, ascii.quotation & "FIRMA :" & ascii.quotation & ifs & ascii.quotation & to_string(name_given) & ascii.quotation);
 			put_line(report_file, ascii.quotation & "STEUERNUMMER :" & ascii.quotation & ifs & ascii.quotation & tax_id_given & ascii.quotation);
 			put_field(report_file,"USt.-IdNr :"); put_field(report_file,vat_id_given); guv_csv.put_lf(report_file);
-			put_field(report_file,"WIRTSCHAFTSJAHR :");put_field(report_file,fiscal_year_given); put_lf(report_file); -- ins v003
+			put_field(report_file,"WIRTSCHAFTSJAHR :");put_field(report_file,fiscal_year_given); put_lf(report_file);
 
 			if month_given /= 0 then
 				put_field(report_file,"MONAT :");put_field(report_file,trim(natural'image(month_given),left)); put_lf(report_file);
@@ -1068,8 +1056,8 @@ procedure guv is
 			put_line(report_file, ascii.quotation & "DATUM (JJJJ-MM-TT) :" & ascii.quotation & ifs & ascii.quotation & image(now, time_zone => UTC_Time_Offset(now)) & ascii.quotation);
 			new_line(report_file);
 
-			put_field(report_file,"MwSt. Schlüssel 1 : "); put_field(report_file,trim(money_positive'image(100*vat_1),left) & " %"); put_lf(report_file); -- ins v003
-			put_field(report_file,"MwSt. Schlüssel 2 : "); put_field(report_file,trim(money_positive'image(100*vat_2),left) & " %"); put_lf(report_file); -- ins v003
+			put_field(report_file,"MwSt. Schlüssel 1 : "); put_field(report_file,trim(money_positive'image(100*vat_1),left) & " %"); put_lf(report_file);
+			put_field(report_file,"MwSt. Schlüssel 2 : "); put_field(report_file,trim(money_positive'image(100*vat_2),left) & " %"); put_lf(report_file);
 			put_lf(report_file); put_lf(report_file);
 
 			put_line(report_file, ascii.quotation & "1. EINNAHMEN" & ascii.quotation);
@@ -1110,7 +1098,6 @@ procedure guv is
 
 							put_field(report_file,trim(natural'image(booking_pt),left));
 							put_field(report_file,takings_sized(booking_pt).date);
-							--put_field(report_file,trim(money_positive'image(takings_sized(booking_pt).amount),left)); -- rm v004
 
 							put_field
 								(
@@ -1136,8 +1123,7 @@ procedure guv is
 							-- skip putting rv figures if not required
 							if report_rv_figures = true then
 								put_field(report_file,takings_sized(booking_pt).rv_pflichtig);
-								--put_field(report_file,trim(money_positive'image(takings_sized(booking_pt).rv),left)); -- rm v005
-								put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_sized(booking_pt).rv),left))); -- rm v005
+								put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_sized(booking_pt).rv),left)));
 								put_field(report_file);
 							end if;
 							put_field(report_file,to_string(takings_sized(booking_pt).remarks));
@@ -1155,7 +1141,7 @@ procedure guv is
 			put_field(report_file,"--------------");
 			put_field(report_file,"-------------------------");
 			put_field(report_file,"-------------------------");
-			-- skip putting rv figures if not required -- ins v006
+			-- skip putting rv figures if not required
 			if report_rv_figures = true then
 				put_field(report_file,"--------------");
 				put_field(report_file,"-------");
@@ -1276,8 +1262,7 @@ procedure guv is
 
 						-- CS: verify vat id here with vat id in takings file
 
-						--if strip_text_delimiters(guv_csv.get_field(line,1)) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- rm v002
-						if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field -- ins v002
+						if guv_csv.get_field(line,1) = "BUCHUNG_NR." then -- set bookings_section_entered flag upon passing the "DATUM" field
 							bookings_section_entered := true;
 						end if;
 					end if;
@@ -1462,8 +1447,7 @@ procedure guv is
 		close(expenses_file);
 
 		yield		:= money(takings_total) - money(expenses_total);
-		--vat_excess 	:= money(takings_vat) - money(expenses_vat); -- rm v003
-		vat_excess 	:= money(takings_vat_1 + takings_vat_2) - money(expenses_vat); -- ins v003
+		vat_excess 	:= money(takings_vat_1 + takings_vat_2) - money(expenses_vat);
 		yield_rv	:= money(takings_rv) - money(expenses_rv);
 
 		--write summary in report file
@@ -1474,47 +1458,40 @@ procedure guv is
 
 		put_lf(report_file);
  		put_field(report_file,"UMSATZ GESAMT :");
- 		--put_field(report_file,trim(money_positive'image(takings_total),left)); -- rm v004
-		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_total),left))); -- ins v004
+		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_total),left)));
 		put_lf(report_file);
 
-		-- put rv figures if required -- ins v006
-		if report_rv_figures = true then -- ins v006
+		-- put rv figures if required
+		if report_rv_figures = true then
 			put_lf(report_file);
 			put_field(report_file,"GEWINN GEWERBE :");
-			-- put_field(report_file,trim(money'image(yield - yield_rv),left)); -- rm v004
-			put_field(report_file,replace_dot_by_comma(trim(money'image(yield - yield_rv),left))); -- ins v004
+			put_field(report_file,replace_dot_by_comma(trim(money'image(yield - yield_rv),left)));
 			put_lf(report_file);
 
 			put_lf(report_file);
 			put_field(report_file,"GEWINN RV PFLICHTIG :"); 
-			--put_field(report_file,trim(money'image(yield_rv),left)); put_field(report_file,"-> x % abzuführen an RV"); -- rm v004
-			put_field(report_file,replace_dot_by_comma(trim(money'image(yield_rv),left))); put_field(report_file,"-> x % abzuführen an RV"); -- ins v004
+			put_field(report_file,replace_dot_by_comma(trim(money'image(yield_rv),left))); put_field(report_file,"-> x % abzuführen an RV");
 			put_field(report_file,"  (Dozenten"); put_field(report_file,"-und"); put_field(report_file," Schulungstätigkeit)");
 			put_lf(report_file);
-		end if; -- ins v006
+		end if;
 
 		put_lf(report_file);
  		put_field(report_file,"GEWINN GESAMT :");
- 		--put_field(report_file,trim(money'image(yield),left)); put_lf(report_file); -- rm v004
-		put_field(report_file,replace_dot_by_comma(trim(money'image(yield),left))); put_lf(report_file); -- ins v004
+		put_field(report_file,replace_dot_by_comma(trim(money'image(yield),left))); put_lf(report_file);
 		put_lf(report_file);
 
  		put_field(report_file,"STEUEREINNAHMEN :");
-		--put_field(report_file,trim(money_positive'image(takings_vat_1 + takings_vat_2),left)); -- rm v004
-		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_vat_1 + takings_vat_2),left))); -- ins v004
+		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(takings_vat_1 + takings_vat_2),left)));
 		put_field(report_file,"(eingen. MwSt.)"); put_lf(report_file);
 		put_lf(report_file);
 
  		put_field(report_file,"VORSTEUER :");
-		--put_field(report_file,trim(money_positive'image(expenses_vat),left)); -- rm v004
-		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(expenses_vat),left))); -- ins v004
+		put_field(report_file,replace_dot_by_comma(trim(money_positive'image(expenses_vat),left)));
 		put_field(report_file,"(ausgegebene MwSt.)"); put_lf(report_file);
 		put_lf(report_file);
 
  		put_field(report_file,"MwSt. ÜBERSCHUSS :");
-		--put_field(report_file,trim(money'image(vat_excess),left)); put_field(report_file,"-> abzuführen an FA"); -- rm v004
-		put_field(report_file,replace_dot_by_comma(trim(money'image(vat_excess),left))); put_field(report_file,"-> abzuführen an FA"); -- ins v004
+		put_field(report_file,replace_dot_by_comma(trim(money'image(vat_excess),left))); put_field(report_file,"-> abzuführen an FA");
 		put_field(report_file,"  (eingen."); put_field(report_file," MwSt."); put_field(report_file," - ausgeg. MwSt.)"); put_lf(report_file);
 		put_lf(report_file);
 
@@ -1577,7 +1554,7 @@ begin
 	prog_position := "INIT";
 
 	--check environment
-	check_environment; -- ins v007
+	check_environment;
 
 
 	prog_position := "ARCT";
@@ -1592,7 +1569,7 @@ begin
 		prog_position := "RDAR";
 		for arg_pt in 1..arg_ct
 		loop
--- rm v007 begin
+
 -- 			if argument(arg_pt) = "-info" then
 -- 				print_help_general;
 -- 			end if;
@@ -1616,7 +1593,6 @@ begin
 -- 			if argument(arg_pt) = "-hilfe_report" then
 -- 				print_help_rep;
 -- 			end if;
--- rm v007 end
 
 			if argument(arg_pt) = "-neu" then
 				create_action := true;
@@ -1865,7 +1841,7 @@ begin
 			if prog_position = "RTA3" then put_line("FEHLER : Einnahmen-Datei enhält keine Steuernummer !"); end if;
 			if prog_position = "TAF0" then put_line("FEHLER : Name der Einnahmen-Datei muss Option '-ed' folgen !"); end if;
 			if prog_position = "EXF0" then put_line("FEHLER : Name der Ausgaben-Datei muss Option '-ad' folgen !"); end if;
-			if prog_position = "RP11" then put_line("FEHLER : Keine Schreibberechtigung auf Report Datei !"); end if; -- ins v006
+			if prog_position = "RP11" then put_line("FEHLER : Keine Schreibberechtigung auf Report Datei !"); end if;
 			if prog_position = "ENV0" then put_line("FEHLER : Keine $HOME Umgebungsvariable gefunden !"); end if;
 			if prog_position = "ENV1" then put_line("FEHLER : Konfigurationsdatei " & to_string(home_directory) & conf_directory & conf_file_name & " nicht gefunden !"); end if;
 			if prog_position = "ENV2" then put_line("FEHLER : Hilfe-Datei " & to_string(home_directory) & conf_directory & help_file_name_german & " nicht gefunden !"); end if;
