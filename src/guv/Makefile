@@ -1,13 +1,13 @@
 TARGET = guv
 
 VPATH = include
-OBJS = $(TARGET).o m1.o csv.o
+OBJS = $(TARGET).o guv_string_processing.o guv_csv.o
 PREFIX = $(HOME)
 BINDIR = $(PREFIX)/bin
 
 # compile
 .adb.o:
-	gcc -c $< -I include
+	gcc -c $< -I $(VPATH)
 .SUFFIXES: .adb .o
 
 # link
