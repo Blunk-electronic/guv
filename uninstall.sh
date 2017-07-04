@@ -50,6 +50,6 @@ procedure_make()
 
 	
 echo "uninstalling binaries ..."
-procedure_make
+procedure_make guv
 echo done
 exit
