@@ -3,7 +3,7 @@
 --                                 GUV                                      --
 --                                                                          --
 --                                                                          --
---         Copyright (C) 2017 Mario Blunk, Blunk electronic                 --
+--         Copyright (C) 2017 - 2020 Mario Blunk, Blunk electronic          --
 --                                                                          --
 --    This program is free software: you can redistribute it and/or modify  --
 --    it under the terms of the GNU General Public License as published by  --
@@ -63,7 +63,7 @@ with guv_csv;					use guv_csv;
 
 procedure guv is
 
-	version			: constant string (1..3) := "009";
+	version			: constant string (1..3) := "010";
 
 	now				: time;
 
@@ -1464,7 +1464,7 @@ procedure guv is
 		-- put rv figures if required
 		if report_rv_figures = true then
 			put_lf(report_file);
-			put_field(report_file,"GEWINN GEWERBE :");
+			put_field(report_file,"GEWINN FREIBERUF :");
 			put_field(report_file,replace_dot_by_comma(trim(money'image(yield - yield_rv),left)));
 			put_lf(report_file);
 

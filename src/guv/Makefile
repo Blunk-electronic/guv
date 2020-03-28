@@ -1,6 +1,6 @@
 TARGET = guv
 
-VPATH = include
+VPATH = ../lib
 OBJS = $(TARGET).o guv_string_processing.o guv_csv.o
 PREFIX = $(HOME)
 BINDIR = $(PREFIX)/bin
