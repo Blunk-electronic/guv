@@ -63,7 +63,7 @@ with guv_csv;					use guv_csv;
 
 procedure guv is
 
-	version			: constant string (1..3) := "010";
+	version			: constant string (1..3) := "011";
 
 	now				: time;
 
@@ -103,8 +103,12 @@ procedure guv is
 	type money is delta 0.01 digits 14;
 	type money_positive is new money range 0.00 .. money'last;
 	subtype vat_key_type is natural range 0..2;
-	vat_1				: money_positive := 0.19;
-	vat_2				: money_positive := 0.07;
+	
+	-- 	vat_1				: money_positive := 0.19;
+	vat_1				: constant money_positive := 0.16;
+	
+	-- 	vat_2				: money_positive := 0.07;
+	vat_2				: constant money_positive := 0.05;
 	vat_calculated		: money_positive;
 
 	yes_no_type 				: constant character_set := to_set("jn");
